@@ -1,0 +1,14 @@
+{
+  "name": "pr-buddy",
+  "description": "Code review helper for GitHub and GitLab",
+  "owner": {
+    "name": "andret2344"
+  },
+  "plugins": [
+    {
+      "name": "pr-buddy",
+      "source": ".",
+      "description": "Review PRs/MRs and answer reviews of your own, posting only after explicit approval."
+    }
+  ]
+}

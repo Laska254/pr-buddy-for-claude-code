@@ -1,0 +1,39 @@
+{
+  "name": "pr-buddy",
+  "version": "0.1.0",
+  "description": "Review pull requests and merge requests on GitHub and GitLab, and answer reviews of your own, posting under your name only after explicit approval.",
+  "author": {
+    "name": "andret2344"
+  },
+  "repository": "https://github.com/andret2344/claude-skill-pr-buddy",
+  "license": "Apache-2.0",
+  "keywords": [
+    "code-review",
+    "github",
+    "gitlab",
+    "pull-request",
+    "merge-request"
+  ],
+  "userConfig": {
+    "github": {
+      "type": "string",
+      "title": "GitHub",
+      "description": "Let pr-buddy work with GitHub (needs the gh CLI logged in).",
+      "options": [
+        "on",
+        "off"
+      ],
+      "default": "on"
+    },
+    "gitlab": {
+      "type": "string",
+      "title": "GitLab",
+      "description": "Let pr-buddy work with gitlab.com (needs the glab CLI logged in).",
+      "options": [
+        "on",
+        "off"
+      ],
+      "default": "on"
+    }
+  }
+}
