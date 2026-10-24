@@ -44,7 +44,13 @@ For this clone only, the directory part drops out: `echo .review/ >> "<file>"` a
    What is wrong and why it matters.
    Lowered from blocking: the user's reason.
    Fix: needs a decision: option one, or option two.
+
+## Untested, let go
+
+- PDF export: a test would compare rendered files.
 ```
+
+`## Untested, let go` holds one line per feature left without a test on purpose, with the reason, per [reviewing](reviewing.md); with none, the section is left out.
 
 The finding line carries the severity, the mark when there is one, `path:line`, and `raised by <login>` when a reviewer already raised the point. The `Fix` line always closes the finding, right under its text, and a blank line separates one finding from the next. With nothing open, `## Findings` holds the line `No findings.`
 
@@ -52,6 +58,7 @@ Take both times from `date '+%Y-%m-%d %H:%M'`. With no report yet, number the fi
 
 - a finding still present keeps its number, with location, severity, text and fix brought up to date;
 - a finding no longer present leaves the report;
+- a finding carrying `Argued in` counts as present until a test covers its feature or the feature is gone, even when the pass would let the feature go;
 - a new finding takes `Next number`, which then goes up by one; a number is never used twice.
 
 Set `Last checked` to now on every run. Set `Last updated` to now only when the findings section changed.

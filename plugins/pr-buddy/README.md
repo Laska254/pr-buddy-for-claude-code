@@ -67,7 +67,9 @@ flowchart LR
 ### `/pr-buddy:review`
 
 Reviews someone else's pull/merge request and posts the review under your name. You keep, edit or drop each comment and
-pick the verdict before anything is sent.
+pick the verdict before anything is sent. A feature with no test counts as blocking, unless it cannot be tested or a
+test is not worth its setup. When the repository configures a coverage tool, it asks whether to run the tests with
+coverage, which runs the author's code on your machine.
 
 ### `/pr-buddy:respond`
 
@@ -81,8 +83,11 @@ posting nothing.
 - It reads the working tree, uncommitted changes included; `--committed` limits it to HEAD.
 - On the default branch with no PR/MR (`main`), it reviews only the uncommitted changes and suggests moving them to a
   branch of their own.
-- The report holds only open findings, and `check` offers to delete it once the PR/MR is merged or closed or the branch
-  is gone.
+- A feature with no test is blocking, unless it cannot be tested or a test is not worth its setup; those it lets go
+  are listed with the reason. In a repository with no tests at all, it suggests adding some instead. When the
+  repository configures a coverage tool, it asks whether to run the tests with coverage.
+- The report holds the open findings and the features let go without a test, and `check` offers to delete it once the
+  PR/MR is merged or closed or the branch is gone.
 - The points you talk it out of go into `.review/waivers.md`, shared by every branch, and come back when the code they
   rely on changes.
 - Git must ignore `.review/`; the first run hands you the command, for bash and for PowerShell, best done once for the
@@ -169,8 +174,8 @@ or, from a shell, `claude plugin update pr-buddy@andret2344`.
 Kept in `~/.claude/pr-buddy/`, never in this repository:
 
 - `guidelines.md`: your review rules, drafted by `/pr-buddy:learn-guidelines`; the plugin ships none of its own. Reviews
-  also follow the rules a repository documents (`CONTRIBUTING.md`, `CLAUDE.md`, `AGENTS.md`, linter configs), and
-  where the two disagree, the repository's rule wins.
+  also follow the rules a repository documents (`CONTRIBUTING.md`, `CLAUDE.md`, `AGENTS.md`, linter configs, coverage
+  thresholds), and where the two disagree, the repository's rule wins.
 - `voice.md`: a profile of how you write review comments, built by `/pr-buddy:learn-voice`.
 
 ## Contributing
