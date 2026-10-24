@@ -8,7 +8,7 @@ argument-hint: "[PR/MR link or number] [--committed]"
 
 Review the user's own work as a relentless reviewer and hand back the findings as a list in this conversation and as review files in the clone. The platform is only read: every finding stays local, so the voice profile and the sending gate play no part. Shared reference lives in the plugin's `reference/` directory, two levels above this skill's base directory.
 
-Platforms the user enabled for pr-buddy: GitHub `${user_config.github}`, GitLab `${user_config.gitlab}`.
+Platforms the user enabled for pr-buddy (`true` or `on` means enabled, `false` or `off` disabled, and a placeholder left unfilled means enabled): GitHub `${user_config.github}`, GitLab `${user_config.gitlab}`.
 
 The code under review is the working tree, uncommitted and untracked files included. With `--committed`, it is HEAD.
 

@@ -7,7 +7,7 @@ description: Work through review comments on the user's own pull request or merg
 
 Take the unresolved review threads on the user's own PR/MR to a decision each, apply the agreed changes locally, and post the replies as one batch. Shared reference lives in the plugin's `reference/` directory, two levels above this skill's base directory.
 
-Platforms the user enabled for pr-buddy: GitHub `${user_config.github}`, GitLab `${user_config.gitlab}`.
+Platforms the user enabled for pr-buddy (`true` or `on` means enabled, `false` or `off` disabled, and a placeholder left unfilled means enabled): GitHub `${user_config.github}`, GitLab `${user_config.gitlab}`.
 
 1. **Setup.** Follow [setup](../../reference/setup.md). The PR/MR author must be the user; when it is someone else, the task is the `review` skill. The current branch must be the source branch, with HEAD equal to or ahead of the remote head. When it is behind, hand the user `git pull` and wait. Done when: platform known, branch and HEAD confirmed, guidelines and voice loaded.
 

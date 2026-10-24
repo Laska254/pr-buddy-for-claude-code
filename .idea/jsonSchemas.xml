@@ -12,7 +12,7 @@
               <option name="patterns">
                 <list>
                   <Item>
-                    <option name="path" value=".claude-plugin/plugin.json" />
+                    <option name="path" value="plugins/pr-buddy/.claude-plugin/plugin.json" />
                   </Item>
                 </list>
               </option>

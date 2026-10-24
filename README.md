@@ -1,113 +1,64 @@
-# pr-buddy
+<p align="center">
+  <img src="plugins/pr-buddy/.claude-plugin/icon.png" width="128" height="128" alt="PR Buddy icon">
+</p>
 
-A Claude Code plugin for code review on GitHub and GitLab (gitlab.com):
+<h1 align="center">PR Buddy for Claude Code</h1>
 
-- `/pr-buddy:review` reviews someone else's pull/merge request and posts the review under your name.
-- `/pr-buddy:respond` works through the review threads on your own pull/merge request: triage, discussion, local edits,
-  then replies.
-- `/pr-buddy:check` reviews your own branch or pull/merge request and lists the problems in the session and in
-  `.review/` in the clone, posting nothing. It reads the working tree, uncommitted changes included; `--committed`
-  limits it to HEAD. On the default branch with no PR/MR (`main`), it reviews only the uncommitted changes and
-  suggests moving them to a branch of their own. The report holds only open findings, and `check` offers to delete it
-  once the PR/MR is merged or closed or the branch is gone; the points you talk it out of go into
-  `.review/waivers.md`, shared by every branch, and come back when the code they rely on changes. Git must ignore
-  `.review/`; the first run hands you the command, for bash and for PowerShell, best done once for the whole machine.
-- `/pr-buddy:learn` learns from your past review comments: your voice (`/pr-buddy:learn-voice`) and the rules you keep
-  enforcing (`/pr-buddy:learn-guidelines`). Run it once before the first review.
+<p align="center">
+  <strong>Code review on GitHub and GitLab, without leaving Claude Code.</strong><br>
+  It reviews, drafts and replies in your voice. Nothing goes out until you say <code>send</code>.
+</p>
 
-| Command   | Whose remarks                  | Edits code          | Posts             |
-|:----------|:-------------------------------|:--------------------|:------------------|
-| `review`  | yours, on someone else's PR/MR | no                  | yes, after `send` |
-| `respond` | the reviewers', on your PR/MR  | yes, once you agree | yes, after `send` |
-| `check`   | pr-buddy's, on your own code   | no                  | never             |
+<p align="center">
+  <a href="https://github.com/andret2344/pr-buddy-for-claude-code/actions/workflows/ci.yml"><img src="https://github.com/andret2344/pr-buddy-for-claude-code/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fandret2344%2Fpr-buddy-for-claude-code%2Fmain%2Fplugins%2Fpr-buddy%2F.claude-plugin%2Fplugin.json&query=%24.version&label=version&color=7c4dff" alt="Version">
+  <img src="https://img.shields.io/badge/Claude%20Code-2.1.284%2B-7c4dff" alt="Claude Code 2.1.284 or later">
+  <img src="https://img.shields.io/badge/platforms-GitHub%20%7C%20GitLab-3fb950" alt="Platforms: GitHub and GitLab">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="License: Apache-2.0"></a>
+</p>
 
-On your own PR/MR, `respond` handles what the reviewers wrote and `check` catches what they missed.
+<p align="center">
+  <a href="plugins/pr-buddy/README.md"><strong>Full documentation</strong></a>
+</p>
 
-Nothing is posted until you have seen the full payload and answered with `send` (or `wyślij`). Each post is a single
-batch: one review, one notification.
+## What it does
 
-`review`, `respond` and `check` work on a local clone of the repository. They never check out, fetch, pull, commit or
-push; they hand you those commands.
+| Command             | What it does                                                                      |
+|:--------------------|:----------------------------------------------------------------------------------|
+| `/pr-buddy:review`  | Reviews someone else's pull/merge request and posts the review under your name.   |
+| `/pr-buddy:respond` | Works through the review threads on your own pull/merge request, then replies.    |
+| `/pr-buddy:check`   | Reviews your own branch or pull/merge request locally and posts nothing.          |
+| `/pr-buddy:learn`   | Learns your review voice and the rules you keep enforcing from your past reviews. |
 
-## Requirements
+## Why pr-buddy
 
-- Claude Code 2.1.271 or later (see [Claude Code version](#claude-code-version)).
-- At least one platform CLI, logged in: [`gh`](https://cli.github.com/) for GitHub, [
-  `glab`](https://gitlab.com/gitlab-org/cli) for GitLab.
-- [`jq`](https://jqlang.org/).
-- A POSIX shell (Bash; Git Bash on Windows).
-
-## Claude Code version
-
-Older versions of Claude Code refuse to load pr-buddy. Check yours with `claude --version`; `claude doctor` also shows
-how it was installed.
-
-To update, close every Claude Code session first, then run the command for your installation in a regular terminal. None
-of them needs administrator rights, except `sudo` for the Linux packages.
-
-| Installed with   | Update command                                                |
-|:-----------------|:--------------------------------------------------------------|
-| Native installer | `claude update`                                               |
-| npm              | `npm install -g @anthropic-ai/claude-code@latest` (no `sudo`) |
-| Homebrew         | `brew upgrade claude-code` (or `claude-code@latest`)          |
-| WinGet           | `winget upgrade Anthropic.ClaudeCode`                         |
-| apt              | `sudo apt update && sudo apt upgrade claude-code`             |
-| dnf              | `sudo dnf upgrade claude-code`                                |
-| apk              | `apk update && apk upgrade claude-code`                       |
-
-Then start Claude Code again: the new version takes effect only in a new session.
-
-## Platforms
-
-When you enable the plugin, Claude Code asks which platforms pr-buddy may use; both are `on` by default. Turn one off to
-keep pr-buddy away from it even while its CLI is logged in, for example a work account: it will neither learn from nor
-post to that platform.
-
-In the dialog shown right after install, ←/→ may switch tabs instead of changing a value
-([a Claude Code bug](https://github.com/anthropics/claude-code/issues/97958)). Confirm it with Enter to keep the
-defaults, then change them in `/config` or in `/plugin` → Installed → pr-buddy → Configure options.
+- **You hold the send button.** Nothing is posted until you have seen the full payload and answered with `send`. Each
+  post is a single batch: one review, one notification.
+- **Your repository stays yours.** pr-buddy never checks out, fetches, pulls, commits or pushes; it hands you those
+  commands.
+- **Your rules, your voice.** It learns from your past review comments and ships no review rules of its own.
 
 ## Install
 
 In a Claude Code session:
 
 ```
-/plugin marketplace add andret2344/claude-skill-pr-buddy
-/plugin install pr-buddy@pr-buddy
+/plugin marketplace add andret2344/pr-buddy-for-claude-code
+/plugin install pr-buddy@andret2344
+/pr-buddy:learn
 ```
 
-Or from a shell:
+Then turn on auto-update once, so new versions reach you without updating by hand: `/plugin` → **Marketplaces** →
+**andret2344** → **Enable auto-update**.
 
-```
-claude plugin marketplace add andret2344/claude-skill-pr-buddy
-claude plugin install pr-buddy@pr-buddy
-```
+Requirements, configuration, updates and the details of every command are in the
+[full documentation](plugins/pr-buddy/README.md).
 
-Then run `/pr-buddy:learn` once.
+## Repository layout
 
-## Updates
-
-Claude Code does not auto-update third-party marketplaces by default. Either turn it on once (`/plugin` → Marketplaces →
-pr-buddy → Enable auto-update), or update by hand:
-
-```
-/plugin marketplace update pr-buddy
-```
-
-or, from a shell, `claude plugin update pr-buddy@pr-buddy`.
-
-## Private files
-
-Kept in `~/.claude/pr-buddy/`, never in this repository:
-
-- `guidelines.md`: your review rules, drafted by `/pr-buddy:learn-guidelines`; the plugin ships none of its own. Reviews
-  also follow the rules a repository documents (`CONTRIBUTING.md`, `CLAUDE.md`, `AGENTS.md`, linter configs), and
-  where the two disagree, the repository's rule wins.
-- `voice.md`: a profile of how you write review comments, built by `/pr-buddy:learn-voice`.
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+- `plugins/pr-buddy/`: the plugin itself, the only folder that reaches its users.
+- `.claude-plugin/marketplace.json`: the `andret2344` marketplace that lists it.
+- Everything else is for developers; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

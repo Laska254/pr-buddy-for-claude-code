@@ -7,7 +7,7 @@ description: Review a pull request or merge request someone else wrote, on GitHu
 
 Review someone else's PR/MR from a local clone, agree every comment with the user, and post it all as one batch. Shared reference lives in the plugin's `reference/` directory, two levels above this skill's base directory.
 
-Platforms the user enabled for pr-buddy: GitHub `${user_config.github}`, GitLab `${user_config.gitlab}`.
+Platforms the user enabled for pr-buddy (`true` or `on` means enabled, `false` or `off` disabled, and a placeholder left unfilled means enabled): GitHub `${user_config.github}`, GitLab `${user_config.gitlab}`.
 
 1. **Setup.** Follow [setup](../../reference/setup.md). The PR/MR author must be someone else; when it is the user, the task is the `check` skill. Then compare `git rev-parse HEAD` with the PR/MR head SHA. When they differ, hand the user `gh pr checkout {n}` or `glab mr checkout {iid}` (after `git status` shows a clean tree) and wait. Done when: platform known, HEAD equals the head SHA, guidelines and voice loaded.
 

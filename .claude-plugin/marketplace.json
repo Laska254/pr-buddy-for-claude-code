@@ -1,13 +1,13 @@
 {
-  "name": "pr-buddy",
-  "description": "Code review helper for GitHub and GitLab",
+  "name": "andret2344",
+  "description": "Claude Code plugins by andret2344",
   "owner": {
     "name": "andret2344"
   },
   "plugins": [
     {
       "name": "pr-buddy",
-      "source": ".",
+      "source": "./plugins/pr-buddy",
       "description": "Review PRs/MRs, answer reviews of your own and check your own work, posting only after explicit approval."
     }
   ]

@@ -16,6 +16,15 @@ jobs:
           node-version: 22
       - run: npm install -g @anthropic-ai/claude-code
       - run: claude plugin validate .
+      - run: claude plugin validate ./plugins/pr-buddy
+
+  license-copies:
+    name: Check license copies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: cmp LICENSE plugins/pr-buddy/LICENSE
+      - run: cmp NOTICE plugins/pr-buddy/NOTICE
 
   links:
     name: Check Markdown links
