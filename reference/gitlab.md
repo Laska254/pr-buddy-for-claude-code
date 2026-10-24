@@ -7,7 +7,8 @@ Every call goes through `glab api` against gitlab.com. Below, `{p}` is the URL-e
 ## Read
 
 - **You:** `glab api user | jq '{username, id}'`.
-- **Metadata:** `glab api projects/{p}/merge_requests/{iid} | jq '{title, description, author: .author.username, draft, source_branch, sha, diff_refs}'`. `sha` is the head; `diff_refs` holds `base_sha`, `head_sha`, `start_sha`.
+- **MR of a branch:** here `{q}` is the URL-encoded path of the branch's own remote, from `git remote get-url "$(git config branch.{branch}.remote)"`, and `glab api projects/{q} | jq '{id, parent: .forked_from_project.path_with_namespace}'` gives its id and, for a fork, its parent. Run `glab api "projects/{q}/merge_requests?source_branch={branch}&state=opened" | jq 'map({iid, author: .author.username, source_project_id})'`, with `{branch}` URL-encoded. The source branch name matches in forks too, so keep only the MRs whose `source_project_id` is that id. For a fork, its MRs live in the parent: run the same query with the same filter against the parent too.
+- **Metadata:** `glab api projects/{p}/merge_requests/{iid} | jq '{title, description, author: .author.username, state, draft, source_branch, sha, diff_refs}'`. `sha` is the head; `diff_refs` holds `base_sha`, `head_sha`, `start_sha`.
 - **Diff:** `glab api "projects/{p}/merge_requests/{iid}/diffs?per_page=100" --paginate | jq -s 'add'`, per file with `old_path`, `new_path`, `new_file`, `deleted_file`, `renamed_file` and the hunk text in `diff`. Line anchors must land in this diff; read the surrounding code from the local clone.
 - **Discussions:** threads needing a response (first note resolvable and unresolved), system notes dropped:
   ```

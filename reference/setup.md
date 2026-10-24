@@ -1,6 +1,6 @@
 # Setup
 
-The shared start of `review` and `respond`.
+The shared start of `review` and `respond`; `check` uses the sections it names.
 
 ## Platform
 
@@ -25,7 +25,14 @@ Run every `gh`, `glab` and `jq` command from the platform references in a POSIX 
 
 ## Guidelines
 
-Review rules belong to the user and live only in `~/.claude/pr-buddy/guidelines.md`. When the file is missing or empty, judge on general engineering grounds and tell the user the review ran without guidelines, and that `/pr-buddy:learn-guidelines` drafts rules from their past reviews.
+Two sources set the rules, and both apply to every changed file:
+
+- **The user's rules**, only in `~/.claude/pr-buddy/guidelines.md`. When the file is missing or empty, judge on general engineering grounds and tell the user the review ran without guidelines, and that `/pr-buddy:learn-guidelines` drafts rules from their past reviews.
+- **The repository's rules**, as it documents them: `CONTRIBUTING.md`, `CLAUDE.md`, `AGENTS.md` and other contributor docs, `.editorconfig`, linter and formatter configs.
+
+Where the two disagree, the repository wins: drop the user's rule for this repository and tell the user, in the conversation, which rule gave way to what. Only a documented rule counts as disagreement. A rule that a linter or formatter in the repository already enforces is left to that tool.
+
+When one rule is broken in three or more places, it becomes one finding naming every place. When that rule is the user's and the repository documents nothing on the point, the finding also suggests recording the convention in the repository's contributor docs.
 
 ## Voice
 

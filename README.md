@@ -5,14 +5,29 @@ A Claude Code plugin for code review on GitHub and GitLab (gitlab.com):
 - `/pr-buddy:review` reviews someone else's pull/merge request and posts the review under your name.
 - `/pr-buddy:respond` works through the review threads on your own pull/merge request: triage, discussion, local edits,
   then replies.
+- `/pr-buddy:check` reviews your own branch or pull/merge request and lists the problems in the session and in
+  `.review/` in the clone, posting nothing. It reads the working tree, uncommitted changes included; `--committed`
+  limits it to HEAD. On the default branch with no PR/MR (`main`), it reviews only the uncommitted changes and
+  suggests moving them to a branch of their own. The report holds only open findings, and `check` offers to delete it
+  once the PR/MR is merged or closed or the branch is gone; the points you talk it out of go into
+  `.review/waivers.md`, shared by every branch, and come back when the code they rely on changes. Git must ignore
+  `.review/`; the first run hands you the command, for bash and for PowerShell, best done once for the whole machine.
 - `/pr-buddy:learn` learns from your past review comments: your voice (`/pr-buddy:learn-voice`) and the rules you keep
   enforcing (`/pr-buddy:learn-guidelines`). Run it once before the first review.
+
+| Command   | Whose remarks                  | Edits code          | Posts             |
+|:----------|:-------------------------------|:--------------------|:------------------|
+| `review`  | yours, on someone else's PR/MR | no                  | yes, after `send` |
+| `respond` | the reviewers', on your PR/MR  | yes, once you agree | yes, after `send` |
+| `check`   | pr-buddy's, on your own code   | no                  | never             |
+
+On your own PR/MR, `respond` handles what the reviewers wrote and `check` catches what they missed.
 
 Nothing is posted until you have seen the full payload and answered with `send` (or `wyślij`). Each post is a single
 batch: one review, one notification.
 
-Both skills work on a local clone of the repository. They never check out, fetch, pull, commit or push; they hand you
-those commands.
+`review`, `respond` and `check` work on a local clone of the repository. They never check out, fetch, pull, commit or
+push; they hand you those commands.
 
 ## Requirements
 
@@ -85,7 +100,9 @@ or, from a shell, `claude plugin update pr-buddy@pr-buddy`.
 
 Kept in `~/.claude/pr-buddy/`, never in this repository:
 
-- `guidelines.md`: your review rules, drafted by `/pr-buddy:learn-guidelines`; the plugin ships none of its own.
+- `guidelines.md`: your review rules, drafted by `/pr-buddy:learn-guidelines`; the plugin ships none of its own. Reviews
+  also follow the rules a repository documents (`CONTRIBUTING.md`, `CLAUDE.md`, `AGENTS.md`, linter configs), and
+  where the two disagree, the repository's rule wins.
 - `voice.md`: a profile of how you write review comments, built by `/pr-buddy:learn-voice`.
 
 ## Contributing

@@ -8,7 +8,7 @@
     {
       "name": "pr-buddy",
       "source": ".",
-      "description": "Review PRs/MRs and answer reviews of your own, posting only after explicit approval."
+      "description": "Review PRs/MRs, answer reviews of your own and check your own work, posting only after explicit approval."
     }
   ]
 }

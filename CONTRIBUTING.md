@@ -12,7 +12,7 @@ Issues and pull requests are welcome.
 
 - **Nothing user-specific.** Voice profiles, guidelines and comment samples live in each user's `~/.claude/pr-buddy/`, never in this repository. The plugin ships no review rules of its own.
 - **Posting stays behind the gate** in `reference/sending.md`: the full payload shown, an explicit send word, one batch.
-- **Repository state belongs to the user.** Skills run read-only git and hand every state-changing command to the user.
+- **Repository state belongs to the user.** Skills run read-only git and hand every state-changing command to the user. Besides the edits the user agrees to in `respond`, the only files a skill creates in a clone are ones git already ignores, such as the `check` files in `.review/`, and it deletes them only once the user confirms; ignore rules (`.gitignore`, `.git/info/exclude`, git config) stay the user's to change.
 - **`${user_config.*}` is substituted only in skill files**, never in `reference/`, so any line that needs a config value belongs in a `SKILL.md`.
 
 ## Testing
