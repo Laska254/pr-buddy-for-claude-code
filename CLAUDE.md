@@ -17,7 +17,9 @@ A change to one file in `reference/` changes several skills at once:
 
 ## Validation
 
-`claude plugin validate .` always reports two warnings that are expected: this `CLAUDE.md` at the plugin root is not loaded as plugin context (it is for developers only), and the plugin has no icon. Leave both alone.
+`claude plugin validate .` always reports one warning that is expected: this `CLAUDE.md` at the plugin root is not loaded as plugin context (it is for developers only). Leave it alone.
+
+The icon is `.claude-plugin/icon.png`, a 512 px PNG rendered from `.claude-plugin/icon.svg`; the validator accepts only the PNG, the SVG is the source. The maintainer's portfolio shows a copy of the same PNG, so a change to the icon starts from the SVG and the new PNG goes to both places.
 
 CI also checks the relative Markdown links between skills and references offline. Renaming or moving a file in `reference/` means updating every link to it in the same change, or CI fails.
 
