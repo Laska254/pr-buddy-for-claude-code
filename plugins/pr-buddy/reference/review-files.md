@@ -88,7 +88,7 @@ During the review, a waiver applies on this branch only when its file holds its 
 
 ## Cleanup
 
-On every run, after the report is written, look for leftovers:
+On a full run, or when the user asks, after the report is written, look for leftovers, all of them in one command:
 
 - a report whose header names a PR/MR that is merged or closed, per the platform's metadata from the repository the header names (skip this check while offline);
 - a report whose name no local branch in `git for-each-ref --format='%(refname:short)' refs/heads` maps to;

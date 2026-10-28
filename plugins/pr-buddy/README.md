@@ -89,7 +89,7 @@ posting nothing.
   are listed with the reason. In a repository with no tests at all, it suggests adding some instead. When the
   repository configures a coverage tool, it asks whether to run the tests with coverage.
 - The report holds the open findings and the features let go without a test, and `check` offers to delete it once the
-  PR/MR is merged or closed or the branch is gone.
+  PR/MR is merged or closed or the branch is gone. It looks for such leftovers on a full run, or when you ask.
 - The points you talk it out of go into `.review/waivers.md`, shared by every branch, and come back when the code they
   rely on changes.
 - Git must ignore `.review/`; the first run hands you the command, for bash and for PowerShell, best done once for the
