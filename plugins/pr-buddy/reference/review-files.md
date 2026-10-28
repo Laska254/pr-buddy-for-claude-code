@@ -56,6 +56,7 @@ The finding line carries the severity, the mark when there is one, `path:line`, 
 
 Take both times from `date '+%Y-%m-%d %H:%M'`. With no report yet, number the findings blocking first, from 1. With a report, read it and keep every number:
 
+- on an incremental run, a finding or let-go note in a file outside the scope stays as it is;
 - a finding still present keeps its number, with location, severity, text and fix brought up to date;
 - a finding no longer present leaves the report;
 - a finding carrying `Argued in` counts as present until a test covers its feature or the feature is gone, even when the pass would let the feature go;
